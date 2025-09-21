@@ -1,5 +1,4 @@
 import knex, { migrate, seed } from "#postgres/knex.js";
-
 await migrate.latest();
 await seed.run();
 
