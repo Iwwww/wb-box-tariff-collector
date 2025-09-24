@@ -20,6 +20,7 @@ const envSchema = z.object({
             .transform((value) => parseInt(value)),
     ]),
     WB_API_KEY: z.string(),
+    GOOGLE_SERVICE_ACCOUNT_JSON_FILE: z.string().endsWith(".json"),
 });
 
 const env = envSchema.parse({
@@ -31,6 +32,7 @@ const env = envSchema.parse({
     NODE_ENV: process.env.NODE_ENV,
     APP_PORT: process.env.APP_PORT,
     WB_API_KEY: process.env.WB_API_KEY,
+    GOOGLE_SERVICE_ACCOUNT_JSON_FILE: process.env.GOOGLE_SERVICE_ACCOUNT_JSON_FILE,
 });
 
 export default env;
