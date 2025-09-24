@@ -1,5 +1,4 @@
 import { google, sheets_v4 } from "googleapis";
-import { JWT } from "google-auth-library";
 import { resolve } from "path";
 import { readFileSync } from "fs";
 
@@ -17,7 +16,7 @@ export async function makeSheetsCtx(keyFile: string): Promise<SheetsCtx> {
     const raw = readFileSync(resolve(keyFile), "utf8");
     const { client_email, private_key } = JSON.parse(raw);
 
-    const auth = new JWT({
+    const auth = new google.auth.JWT({
         email: client_email,
         key: private_key,
         scopes: "https://www.googleapis.com/auth/spreadsheets",
