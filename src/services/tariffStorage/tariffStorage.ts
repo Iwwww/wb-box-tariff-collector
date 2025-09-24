@@ -1,7 +1,6 @@
 import knex from "#postgres/knex.js";
 import { getWbTariffsData } from "#services/wildberriesClient/wildberriesClient.js";
 import { WbBoxTariffsTable, WbBoxTariffsData, WbWarehouseTariff } from "#types/tariffStorage.js";
-// import { wbBoxTariffsResponseMock } from "./mock/wbBoxTariffsResponse.js";
 
 /** Статус операции выгрузки данных */
 export enum Status {
@@ -15,11 +14,6 @@ export enum Status {
     FAILED = 3,
 }
 
-export async function updateWbTariffs() {
-    const tariffs = await getWbTariffsData();
-    await upsertLastRow(tariffs);
-}
-
 /** Вставляет новую строку в таблицу `wb_box_tariffs` */
 export async function insertRow() {
     console.log("DB: Inserting new row.");
@@ -31,7 +25,7 @@ export async function insertRow() {
  *
  * @param tariffs {WbBoxTariffsData} Тарифы коробов
  */
-async function upsertLastRow(tariffs: WbBoxTariffsData): Promise<void> {
+export async function upsertLastRow(tariffs: WbBoxTariffsData): Promise<void> {
     try {
         const update = await knex<WbBoxTariffsTable>("wb_box_tariffs")
             .update({
