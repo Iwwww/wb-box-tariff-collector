@@ -25,7 +25,7 @@ export interface WbBoxTariffsResponse {
 }
 export type WbBoxTariffsTable = {
     id: number;
-    data: WbBoxTariffsJson | null;
+    data: WbBoxTariffsData | null;
     upload_status: Status;
     error: string | null;
     created_at: string;
