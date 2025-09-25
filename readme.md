@@ -9,6 +9,7 @@
     + [spreadsheets-manager](#spreadsheets-manager)
       - [Запуск утилиты](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%83%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D1%8B)
       - [Usage](#usage)
+      - [Запуск в Docker](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D0%B2-docker)
   * [Структура данных API "Тарифы коробов" для хранения в БД](#структура-данных-api-“тарифы-коробов”-для-хранения-в-бд)
 
 
@@ -139,6 +140,13 @@ Commands:
   *
   help [command]                            display help for command
 
+```
+
+#### Запуск в Docker
+
+Для запуска в докере используйте команду:
+```bash
+docker compose exec app npm run spreadsheets-manager <command>
 ```
 
 
