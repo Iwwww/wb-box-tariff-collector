@@ -2,7 +2,7 @@ import { API_WB_BASE_URL, API_WB_TARIFFS_PATH } from "#config/wildberriesClient.
 import env from "#config/env/env.js";
 import { fetchJsonData } from "#utils/http.js";
 import { WbBoxTariffsData, WbBoxTariffsResponse } from "#types/tariffStorage.js";
-import wbBoxTariffsResponse from "./mock/wbBoxTariffsResponse.js";
+// import wbBoxTariffsResponse from "./mock/wbBoxTariffsResponse.js";
 
 /**
  * Запрашивает тарифов коробов
@@ -24,10 +24,10 @@ async function fetchWbTariffs(): Promise<WbBoxTariffsResponse> {
             "Content-Type": "application/json",
         }),
     };
-    // const jsonResponse: WbBoxTariffsResponse = await fetchJsonData<WbBoxTariffsResponse>(url, init);
+    const jsonResponse: WbBoxTariffsResponse = await fetchJsonData<WbBoxTariffsResponse>(url, init);
 
     // mock data
-    const jsonResponse: WbBoxTariffsResponse = wbBoxTariffsResponse;
+    // const jsonResponse: WbBoxTariffsResponse = wbBoxTariffsResponse;
 
     return jsonResponse;
 }

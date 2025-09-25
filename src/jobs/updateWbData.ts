@@ -5,7 +5,7 @@ import env from "#config/env/env.js";
 import knexConfig from "#config/knex/knexfile.js";
 import Knex from "knex";
 import { makeSheetsCtx } from "#services/googleSheetsExporter/googleSheetsClient.js";
-import { claerOrCreateSheet, ping, writeDataToSheet } from "#services/googleSheetsExporter/googleSheetsRepo.js";
+import { claerOrCreateSheet, writeDataToSheet } from "#services/googleSheetsExporter/googleSheetsRepo.js";
 import { getLastDataIfStatus, Status, updateStatus, upsertLastRow } from "#services/tariffStorage/tariffStorage.js";
 import { getWbTariffsData } from "#services/wildberriesClient/wildberriesClient.js";
 import { WbBoxTariffsData, WbWarehouseTariff } from "#types/tariffStorage.js";

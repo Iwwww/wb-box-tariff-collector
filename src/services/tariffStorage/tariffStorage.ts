@@ -1,6 +1,5 @@
 import knex from "#postgres/knex.js";
-import { getWbTariffsData } from "#services/wildberriesClient/wildberriesClient.js";
-import { WbBoxTariffsTable, WbBoxTariffsData, WbWarehouseTariff } from "#types/tariffStorage.js";
+import { WbBoxTariffsTable, WbBoxTariffsData } from "#types/tariffStorage.js";
 
 /** Статус операции выгрузки данных */
 export enum Status {
