@@ -1,26 +1,31 @@
+# Сборщик тарифов коробов Wildberries
+
+## Содержание
+
 - [Сборщик тарифов коробов Wildberries](#%D1%81%D0%B1%D0%BE%D1%80%D1%89%D0%B8%D0%BA-%D1%82%D0%B0%D1%80%D0%B8%D1%84%D0%BE%D0%B2-%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%BE%D0%B2-wildberries)
   * [Описание](#%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5)
+  * [Подготовка к запуску](#%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA%D1%83)
   * [Команды](#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B)
     + [spreadsheets-manager](#spreadsheets-manager)
       - [Запуск утилиты](#%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%83%D1%82%D0%B8%D0%BB%D0%B8%D1%82%D1%8B)
       - [Usage](#usage)
   * [Структура данных API "Тарифы коробов" для хранения в БД](#структура-данных-api-“тарифы-коробов”-для-хранения-в-бд)
 
-# Сборщик тарифов коробов Wildberries
 
 ## Описание
 
-Приложение выполняет две джобы:
+Проект написан на основе шаблона.
+
+Приложение выполняет две джобы по таймеру:
 
 1. Каждый час получает данные по Wildberries API, сохраняет в базу данных и обновляет значения в Google Sheets. 
-
 Данные сохраняются в последнюю строку таблици `wb_box_tariffs`. 
 
 2. Каждые сутки в 03:30 добавляется новая строка в БД, таки образом данные в новом дне не будут перезаписываться.
 
 ID таблиц Google Sheets берутся из таблицы `spreadsheets_id`.
 
-Для взаимодействия с таблицей `spreadsheets_id` используется утилита командной строки [spreadsheets-manager](#spreadsheets-manager)
+Для взаимодействия с таблицей `spreadsheets_id` используется утилита командной строки [spreadsheets-manager](#spreadsheets-manager).
 
 Настоены контейнеры для `postgres` и приложения на `nodejs`.  
 Для взаимодействия с БД используется `knex.js`.  
@@ -28,14 +33,31 @@ ID таблиц Google Sheets берутся из таблицы `spreadsheets_i
 
 Все настройки можно найти в файлах:
 
-- compose.yaml
-- dockerfile
-- package.json
-- tsconfig.json
-- src/config/env/env.ts
-- src/config/knex/knexfile.ts
-- src/config/gooogleSheetsExporter.ts
-- src/config/wildberriesClient.ts
+- [compose](compose.yaml)
+- [ dockerfile ]( dockerfile )
+- [ package.json ]( package.json )
+- [ tsconfig.json ]( tsconfig.json )
+- [ src/config/env/env.ts ]( src/config/env/env.ts )
+- [ src/config/knex/knexfile.ts ]( src/config/knex/knexfile.ts )
+- [ src/config/gooogleSheetsExporter.ts ]( src/config/gooogleSheetsExporter.ts )
+- [ src/config/wildberriesClient.ts ]( src/config/wildberriesClient.ts )
+
+## Подготовка к запуску
+
+Создайте файл переменных окружения `.env`
+
+```bash
+cp {example,}.env
+```
+
+В файле укажите ключ Wildberries API и путь к фйлу с данными Google Service Account в формате json:
+
+```
+WB_API_KEY=<ваш ключ>
+GOOGLE_SERVICE_ACCOUNT_JSON_FILE=<ваш файл.json>
+```
+
+Для получения прав на измение содержимого в Google Sheets, необходимо пригласить сервисный аккаунт как  **Редактора**.
 
 ## Команды
 
